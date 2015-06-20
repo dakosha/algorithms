@@ -1,0 +1,15 @@
+apply plugin: 'scala'
+apply plugin: 'application'
+
+mainClassName = 'kz.algorithms.Main'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.scala-lang:scala-library:2.11.6'
+
+    testCompile 'org.scalatest:scalatest_2.11:2.2.5',
+                'junit:junit:4.12'
+}
