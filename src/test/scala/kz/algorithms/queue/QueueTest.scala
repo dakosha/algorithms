@@ -18,7 +18,7 @@ class QueueTest extends FunSuite {
   }
 
   test("Empty queue should return same element just after pushing") {
-    val queue = new Queue
+    val queue = new Queue[Int]
     val value = 10
     queue.enQueue(value)
     val newVal = queue.deQueue
@@ -26,7 +26,7 @@ class QueueTest extends FunSuite {
   }
 
   test("Queue should be empty") {
-    val queue = new Queue
+    val queue = new Queue[Int]
     queue.enQueue(1)
     queue.enQueue(2)
     queue.deQueue
@@ -35,7 +35,7 @@ class QueueTest extends FunSuite {
   }
 
   test("Queue should return elements in the same order") {
-    val queue = new Queue
+    val queue = new Queue[Int]
     queue.enQueue(1)
     queue.enQueue(2)
     queue.enQueue(3)

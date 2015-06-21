@@ -20,7 +20,7 @@ class StackTest extends FunSuite {
   }
 
   test("Stack should return last pushed element") {
-    val stack = new Stack
+    val stack = new Stack[Int]
     val value = 5
     stack.push(value)
     val newVal = stack.pop
@@ -28,7 +28,7 @@ class StackTest extends FunSuite {
   }
 
   test("Stack should be empty") {
-    val stack = new Stack
+    val stack = new Stack[Int]
     stack.push(1)
     stack.push(2)
     stack.pop
@@ -37,7 +37,7 @@ class StackTest extends FunSuite {
   }
 
   test("Stack should return elements in backward order") {
-    val stack = new Stack
+    val stack = new Stack[Int]
     stack.push(1)
     stack.push(2)
     stack.push(3)

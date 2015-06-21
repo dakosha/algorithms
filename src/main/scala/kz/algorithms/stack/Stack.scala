@@ -4,20 +4,18 @@ import java.util.NoSuchElementException
 
 import kz.algorithms.base.Node
 
-import scala.util.Success
-
 /**
  * Created by Alina on 20.06.15.
  */
-class Stack {
+class Stack [T] {
 
-  private var lastNode: Node = null
+  private var lastNode: Node[T] = null
 
   def empty: Boolean = lastNode == null
 
-  def peek: Option[Int] = if (lastNode != null) Some(lastNode.value) else None
+  def peek: Option[T] = if (lastNode != null) Some(lastNode.value) else None
 
-  def push(value: Int) = {
+  def push(value: T) = {
     if (lastNode == null)
       lastNode = Node(value)
     else {
@@ -27,7 +25,7 @@ class Stack {
     }
   }
 
-  def pop: Int = {
+  def pop: T = {
     if (lastNode == null)
       throw new NoSuchElementException
     val res = lastNode.value

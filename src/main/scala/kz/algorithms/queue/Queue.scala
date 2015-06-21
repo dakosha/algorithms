@@ -5,13 +5,13 @@ import kz.algorithms.base.Node
 /**
  * Created by Alina on 20.06.15.
  */
-class Queue {
+class Queue[T] {
 
-  private var last: Node = null
+  private var last: Node[T] = null
 
   def empty: Boolean = last == null
 
-  def enQueue(value: Int) = {
+  def enQueue(value: T) = {
     if (last==null)
       last = Node(value)
     else {
@@ -22,7 +22,7 @@ class Queue {
     }
   }
 
-  def deQueue: Int = {
+  def deQueue: T = {
     if (last==null)
       throw new NoSuchElementException
     else {

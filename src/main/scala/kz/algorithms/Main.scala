@@ -32,7 +32,6 @@ object Main {
     graph.addRoute(10,12)
     graph.addRoute(6,12)
 
-    println(graph)
     graph.printRoutes(1,12)
 
   }

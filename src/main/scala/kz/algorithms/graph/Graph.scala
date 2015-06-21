@@ -1,5 +1,6 @@
 package kz.algorithms.graph
 
+import kz.algorithms.queue.Queue
 import kz.algorithms.stack.Stack
 
 /**
@@ -50,7 +51,7 @@ class Graph {
 
   def printRoutes(from: Int, to: Int) = {
     var was = Set[Int](from)
-    val route = new Stack
+    val route = new Stack[Int]
     route.push(from)
 
     def find(from: Int, to: Int): Unit = {
@@ -74,6 +75,24 @@ class Graph {
     }
 
     find(from, to)
+  }
+
+  def findRoutesWidely(from: Int, to: Int) = {
+    val queue = new Queue[Stack[Int]]
+    val stack = new Stack[Int]
+    stack.push(from)
+
+    def iteration(queue: Queue[Stack[Int]]): Unit = {
+      val step = queue.deQueue
+      val point = step.peek.get
+      val p = points.get(point).getOrElse(null)
+      for { con <- p.to } yield {
+        val to = con.to
+        val nStack = new Stack[Int]
+      }
+    }
+
+    iteration(queue)
   }
 
   override def toString = {

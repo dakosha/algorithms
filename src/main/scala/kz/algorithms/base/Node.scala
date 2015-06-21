@@ -3,7 +3,7 @@ package kz.algorithms.base
 /**
  * Created by Alina on 20.06.15.
  */
-case class Node(value: Int, var next: Node = null) {
+case class Node [T] (value: T, var next: Node[T] = null) {
 
   override def toString = {
     this match {
