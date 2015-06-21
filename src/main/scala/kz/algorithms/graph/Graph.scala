@@ -81,15 +81,47 @@ class Graph {
     val queue = new Queue[Stack[Int]]
     val stack = new Stack[Int]
     stack.push(from)
+    queue.enQueue(stack)
 
     def iteration(queue: Queue[Stack[Int]]): Unit = {
-      val step = queue.deQueue
-      val point = step.peek.get
-      val p = points.get(point).getOrElse(null)
-      for { con <- p.to } yield {
-        val to = con.to
-        val nStack = new Stack[Int]
+
+      val st = queue.deQueue
+      val point = points.get(st.peek.get)
+      if (point.get.name == to) {
+        println(st)
       }
+
+      for {
+        con <- point.get.to
+        stNew = copyStack(st, con.to.name)
+        if (stNew!=null)
+      } yield {
+        queue.enQueue(stNew)
+      }
+
+      if (!queue.empty)
+        iteration(queue)
+
+    }
+
+    def copyStack[T](s: Stack[T], step: T): Stack[T] = {
+      val res = new Stack[T]
+      val temp = new Stack[T]
+      var flag = false
+      while (!s.empty) {
+        val t = s.pop
+        if (t==step)
+          flag = true
+        temp.push(t)
+      }
+      while (!temp.empty) {
+        val t = temp.pop
+        res.push(t)
+        s.push(t)
+      }
+      res.push(step)
+      if (flag) return null
+      res
     }
 
     iteration(queue)
