@@ -63,4 +63,16 @@ class TreeTest extends FunSuite {
 
   }
 
+  test("In tree, it should return common parent for both nodes") {
+    val tree = TreeHelper.generateTree(Array(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15))
+    assert(TreeHelper.findCommonParent(tree.find(1), tree.find(7)).value == 4)
+    assert(TreeHelper.findCommonParent(tree.find(1), tree.find(5)).value == 4)
+    assert(TreeHelper.findCommonParent(tree.find(1), tree.find(6)).value == 4)
+    assert(TreeHelper.findCommonParent(tree.find(3), tree.find(6)).value == 4)
+    assert(TreeHelper.findCommonParent(tree.find(4), tree.find(15)).value == 8)
+    assert(TreeHelper.findCommonParent(tree.find(4), tree.find(11)).value == 8)
+    assert(TreeHelper.findCommonParent(tree.find(9), tree.find(13)).value == 12)
+    assert(TreeHelper.findCommonParent(tree.find(9), tree.find(11)).value == 10)
+  }
+
 }

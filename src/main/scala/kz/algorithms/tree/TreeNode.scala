@@ -65,8 +65,11 @@ case class TreeItem(val value: Int,
     else if (VAL < value) {
       left.find(VAL)
     }
-    else {
+    else if (VAL == value) {
       return this
+    }
+    else {
+      return null
     }
   }
 
@@ -120,8 +123,30 @@ case class TreeItem(val value: Int,
 
 object TreeHelper {
 
-  def nextInOrderNode(node: TreeNode): TreeNode = {
+  def isSubTree(node1: TreeNode, node2: TreeNode): Boolean = {
 
+    val node = node1.find(node2.value)
+    if (node==null) return false
+
+
+    return false
+  }
+  
+  def findCommonParent(node1: TreeNode, node2: TreeNode): TreeNode = {
+    var n1 = node1
+    while (n1.parent!=null) {
+      var n2 = node2
+      while (n2.parent!=null) {
+        if (n1.parent == n2.parent)
+          return n1.parent
+        n2 = n2.parent
+      }
+      n1 = n1.parent
+    }
+    return null
+  }
+
+  def nextInOrderNode(node: TreeNode): TreeNode = {
     if (node.right==Leaf) {
       var n = node
       while (n.parent != null && n.parent.value < node.value)
@@ -137,7 +162,6 @@ object TreeHelper {
         n = n.left
       return n
     }
-
   }
 
   def generateLinkedLists(treeNode: TreeNode): Array[Node[TreeNode]] = {
