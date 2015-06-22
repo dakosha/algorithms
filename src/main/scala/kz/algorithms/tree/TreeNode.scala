@@ -1,52 +1,79 @@
 package kz.algorithms.tree
 
+import kz.algorithms.base.Node
+
 /**
  * Created by Alina on 20.06.15.
  */
 
 trait TreeNode {
+  def left: TreeNode
+  def right: TreeNode
+  def parent: TreeNode
+  def value: Int
   def insert(VAL: Int): TreeNode
   def delete(VAL: Int): TreeNode
+  def find(VAL: Int): TreeNode
   def inOrder: Array[Int]
   def preOrder: Array[Int]
   def postOrder: Array[Int]
 }
 
 object Leaf extends TreeNode {
+  override def left = ???
+  override def right = ???
+  override def parent = ???
+  override def value = -1
   override def toString = "Leaf"
   override def insert(VAL: Int) = ???
   override def delete(VAL: Int) = ???
+  override def find(VAL: Int) = ???
   override def inOrder: Array[Int] = Array()
   override def preOrder: Array[Int] = Array()
   override def postOrder: Array[Int] = Array()
 }
 
 case class TreeItem(val value: Int,
+                    var parent: TreeNode,
                     var left: TreeNode = Leaf,
                     var right: TreeNode = Leaf) extends TreeNode {
 
   override def toString = s"[$left-$value-$right]"
 
+  //override def toString = this.value.toString
+
   override def insert(VAL: Int) = {
     if (VAL > value) {
       right match {
-        case TreeItem(n, r, l) => right.insert(VAL)
-        case Leaf => right = TreeItem(VAL)
+        case TreeItem(n, p, r, l) => right.insert(VAL)
+        case Leaf => right = TreeItem(VAL, this)
       }
     }
     else if (VAL < value) {
       left match {
-        case TreeItem(n, r, l) => left.insert(VAL)
-        case Leaf => left = TreeItem(VAL)
+        case TreeItem(n, p, r, l) => left.insert(VAL)
+        case Leaf => left = TreeItem(VAL, this)
       }
     }
     this
   }
 
+  override def find(VAL: Int): TreeNode = {
+    if (VAL > value) {
+      right.find(VAL)
+    }
+    else if (VAL < value) {
+      left.find(VAL)
+    }
+    else {
+      return this
+    }
+  }
+
   override def delete(VAL: Int): TreeNode = {
     if (VAL > value) {
       right match {
-        case TreeItem(n, l, r) => {
+        case TreeItem(n, p, l, r) => {
           if (n == VAL) {
             val nodes = l.inOrder ++ r.inOrder
             right = TreeHelper.generateTree(nodes)
@@ -59,7 +86,7 @@ case class TreeItem(val value: Int,
     }
     else if (VAL < value) {
       left match {
-        case TreeItem(n, l, r) => {
+        case TreeItem(n, p, l, r) => {
           if (n==VAL) {
             val nodes = l.inOrder ++ r.inOrder
             left = TreeHelper.generateTree(nodes)
@@ -93,34 +120,92 @@ case class TreeItem(val value: Int,
 
 object TreeHelper {
 
+  def nextInOrderNode(node: TreeNode): TreeNode = {
+
+    if (node.right==Leaf) {
+      var n = node
+      while (n.parent != null && n.parent.value < node.value)
+        n = n.parent
+
+      if (n.parent!=null) return n.parent
+      else return Leaf
+    }
+    else {
+
+      var n = node.right
+      while (n.left!=Leaf)
+        n = n.left
+      return n
+    }
+
+  }
+
+  def generateLinkedLists(treeNode: TreeNode): Array[Node[TreeNode]] = {
+    val node = Node(treeNode)
+    var array = Array(node)
+
+    def iterate: Unit = {
+      var levelNode: Node[TreeNode] = null
+      var node = array(array.length-1)
+      while (node!=null) {
+        node.value match {
+          case TreeItem(v, p, l, r) => {
+            l match {
+              case TreeItem(v1, p1, l1, r1) => {
+                if (levelNode==null) levelNode = Node(l)
+                else levelNode.addLast(l)
+              }
+              case _ => {}
+            }
+            r match {
+              case TreeItem(v1, p1, l1, r1) => {
+                if (levelNode==null) levelNode = Node(r)
+                else levelNode.addLast(r)
+              }
+              case _ => {}
+            }
+          }
+        }
+        node = node.next
+      }
+      if (levelNode==null) return
+      array = array ++ Array(levelNode)
+      iterate
+    }
+
+    iterate
+    array
+  }
+
   def generateTree(array: Array[Int]) = {
 
-    def generateTree(start: Int, end: Int): TreeNode = {
+    def generateTree(start: Int, end: Int, parent: TreeNode): TreeNode = {
       if (start == end)
         return Leaf;
 
       val middle = (start + end) / 2;
-      val node = TreeItem(array(middle))
+      val node = TreeItem(array(middle), parent)
 
-      node.left = generateTree(start, middle)
-      node.right = generateTree(middle+1, end)
+      node.left = generateTree(start, middle, node)
+      node.right = generateTree(middle+1, end, node)
+      node.parent = parent
 
       node
     }
 
-    generateTree(0, array.length)
+    generateTree(0, array.length, null)
   }
 
   def isBalanced(node: TreeNode): Boolean = {
 
     def maxDepth(node: TreeNode): Int = node match {
       case Leaf => 0
-      case TreeItem(value, left, right) => math.max(maxDepth(left), maxDepth(right)) + 1
+      case TreeItem(value, parent, left, right) => math.max(maxDepth(left), maxDepth(right)) + 1
     }
 
     def minDepth(node: TreeNode): Int = node match {
       case Leaf => 0
-      case TreeItem(value, left, right) => math.min(minDepth(left), minDepth(right)) + 1
+      case TreeItem(value, parent, left, right) => math.min(minDepth(left), minDepth(right)) + 1
     }
 
     maxDepth(node) - minDepth(node) < 2

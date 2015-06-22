@@ -13,20 +13,34 @@ object Main {
 
   def main(args: Array[String]) = {
 
-    val graph = new Graph
+    val tree = TreeHelper.generateTree(Array(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15))
+    println(tree)
 
-    graph.addRoute(1,2)
-    graph.addRoute(1,3)
-    graph.addRoute(2,4)
-    graph.addRoute(2,5)
-    graph.addRoute(4,1)
-    graph.addRoute(4,5)
+    var node = tree.left.right.right
+    var n = TreeHelper.nextInOrderNode(node)
+    println(node.value)
+    println(n.value)
 
-    println("wide search")
-    graph.findRoutesWidely(1,5)
+    node = tree.left.left.left
+    n = TreeHelper.nextInOrderNode(node)
+    println(node.value)
+    println(n.value)
 
-    println("deep search")
-    graph.printRoutes(1,5)
+    node = tree.right.right.right
+    n = TreeHelper.nextInOrderNode(node)
+    println(node.value)
+    println(n.value)
+
+    node = tree.right.left.right
+    n = TreeHelper.nextInOrderNode(node)
+    println(node.value)
+    println(n.value)
+
+    node = tree.left.right.left
+    n = TreeHelper.nextInOrderNode(node)
+    println(node.value)
+    println(n.value)
+
   }
 
 
