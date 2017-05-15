@@ -4,9 +4,6 @@ import org.junit.runner.RunWith
 import org.scalatest.FunSuite
 import org.scalatest.junit.JUnitRunner
 
-/**
- * Created by Alina on 20.06.15.
- */
 @RunWith(classOf[JUnitRunner])
 class QueueTest extends FunSuite {
 

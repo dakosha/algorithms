@@ -2,9 +2,6 @@ package kz.algorithms.queue
 
 import kz.algorithms.base.Node
 
-/**
- * Created by Alina on 20.06.15.
- */
 class Queue[T] {
 
   private var last: Node[T] = null

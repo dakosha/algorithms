@@ -4,9 +4,6 @@ import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 import org.scalatest.{FunSuite, FlatSpec}
 
-/**
- * Created by Alina on 20.06.15.
- */
 @RunWith(classOf[JUnitRunner])
 class TreeTest extends FunSuite {
 

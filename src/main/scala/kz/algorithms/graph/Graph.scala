@@ -3,9 +3,6 @@ package kz.algorithms.graph
 import kz.algorithms.queue.Queue
 import kz.algorithms.stack.Stack
 
-/**
- * Created by Alina on 20.06.15.
- */
 class Graph {
 
   var connections = Map[String, Connection]()

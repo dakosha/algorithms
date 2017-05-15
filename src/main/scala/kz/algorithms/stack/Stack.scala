@@ -4,9 +4,6 @@ import java.util.NoSuchElementException
 
 import kz.algorithms.base.Node
 
-/**
- * Created by Alina on 20.06.15.
- */
 class Stack [T] {
 
   private var lastNode: Node[T] = null

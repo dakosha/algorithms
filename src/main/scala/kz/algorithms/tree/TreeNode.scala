@@ -2,10 +2,6 @@ package kz.algorithms.tree
 
 import kz.algorithms.base.Node
 
-/**
- * Created by Alina on 20.06.15.
- */
-
 trait TreeNode {
   def left: TreeNode
   def right: TreeNode
