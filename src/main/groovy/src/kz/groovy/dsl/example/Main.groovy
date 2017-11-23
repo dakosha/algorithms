@@ -1,8 +1,5 @@
 package src.kz.groovy.dsl.example
 
-import com.google.common.base.CharMatcher
-import com.google.common.base.Splitter
-
 class Main {
 
     def static split(string) {
