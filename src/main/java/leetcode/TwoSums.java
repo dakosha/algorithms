@@ -2,7 +2,6 @@ package leetcode;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
 
 /**
  * @author Dauren Mussa
@@ -10,9 +9,11 @@ import java.util.TreeMap;
  */
 public class TwoSums {
 
+    private Map<Integer, Integer> map;
+
     public static void main(String[] args) {
         int[] arr = new int[1000000];
-        for (int i=0; i<arr.length; i++) {
+        for (int i = 0; i < arr.length; i++) {
             arr[i] = i;
         }
 
@@ -39,14 +40,13 @@ public class TwoSums {
         System.out.println(time2 - time1);
     }
 
-    private Map<Integer, Integer> map;
     public int[] twoSum1(int[] nums, int target) {
 
         map = new HashMap<>();
-        for (int i = 0; i< nums.length; i++) {
+        for (int i = 0; i < nums.length; i++) {
             Integer e = map.get(target - nums[i]);
             if (e != null) {
-                return new int[] {e, i};
+                return new int[]{e, i};
             } else {
                 map.put(nums[i], i);
             }
@@ -69,15 +69,14 @@ public class TwoSums {
         min = Math.abs(min);
         int[] map = new int[min + max + 1];
 
-
         for (int i = 0; i < nums.length; i++) {
             int diff = target - nums[i];
             if (diff <= max && (diff + min) >= 0) {
                 if (map[diff + min] >= 1) {
-                    return new int[]{i, map[diff + min]-1};
+                    return new int[]{i, map[diff + min] - 1};
                 }
             }
-            map[nums[i] + min] = i+1;
+            map[nums[i] + min] = i + 1;
         }
         return new int[]{-1, -1};
     }
