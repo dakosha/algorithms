@@ -1,7 +1,12 @@
 buildscript {
     ext {
         versions = [
-                kotlin: "1.1.60"
+                kotlin: "1.1.60",
+                scala: "2.12",
+                scalaImplVersion: "2.12.4",
+                groovy: "2.4.12",
+                clojure: "1.8.0",
+                clojurePlugin: "0.3.0"
         ]
     }
 
@@ -15,17 +20,19 @@ buildscript {
 
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
-        classpath "io.github.gradle-clojure:gradle-clojure-plugin:0.3.0"
+        classpath "io.github.gradle-clojure:gradle-clojure-plugin:${versions.clojurePlugin}"
     }
 }
 
 apply plugin: 'java'
 apply plugin: 'kotlin'
 apply plugin: 'scala'
-apply plugin: 'application'
-apply plugin: 'idea'
 apply plugin: 'groovy'
 apply plugin: "gradle-clojure.clojure"
+
+apply plugin: 'application'
+apply plugin: 'idea'
+
 
 mainClassName = 'kz.algorithms.Main'
 
@@ -41,10 +48,10 @@ repositories {
 }
 
 dependencies {
-    compile 'org.codehaus.groovy:groovy-all:2.4.12'
-    compile 'org.scala-lang:scala-library:2.12.4'
-    compile 'org.clojure:clojure:1.8.0'
-
-    //Kotlin dependency
+    compile "org.scalaz:scalaz_${versions.scala}:7.2.17"
+    compile group: 'com.typesafe.akka', name: 'akka-actor_2.12', version: '2.5.8'
+    compile "org.codehaus.groovy:groovy-all:${versions.groovy}"
+    compile "org.scala-lang:scala-library:${versions.scalaImplVersion}"
+    compile "org.clojure:clojure:${versions.clojure}"
     compile "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
 }

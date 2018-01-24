@@ -1,9 +1,5 @@
 package leetcode;
 
-import com.sun.tools.javac.util.JavacMessages;
-
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -62,7 +58,7 @@ public class MaxPointsOnALane {
         } else {
             java.math.BigInteger Y1Y2x = java.math.BigInteger.valueOf(a.y - b.y);
             java.math.BigInteger X2X1y = java.math.BigInteger.valueOf(b.x - a.x);
-            java.math.BigInteger C = java.math.BigInteger.valueOf(a.x*b.y).subtract(java.math.BigInteger.valueOf(b.x*a.y));
+            java.math.BigInteger C = java.math.BigInteger.valueOf(a.x * b.y).subtract(java.math.BigInteger.valueOf(b.x * a.y));
             java.math.BigInteger gcd1 = Y1Y2x.gcd(X2X1y);
             gcd1 = gcd1.gcd(C);
 
@@ -70,13 +66,13 @@ public class MaxPointsOnALane {
             X2X1y = X2X1y.divide(gcd1);
             C = C.divide(gcd1);
 
-            if (Y1Y2x.intValue()<0) {
+            if (Y1Y2x.intValue() < 0) {
                 Y1Y2x = Y1Y2x.negate();
                 X2X1y = X2X1y.negate();
                 C = C.negate();
             }
 
-            String formula = Y1Y2x + "x + " + X2X1y + "y + "+ C + "=0";
+            String formula = Y1Y2x + "x + " + X2X1y + "y + " + C + "=0";
 
             result = formula;
         }

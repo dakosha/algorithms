@@ -1,34 +1,45 @@
 package leetcode;
 
-import java.security.PublicKey;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Queue;
-
 /**
  * @author Dauren Mussa
- * @since 11/22/17
+ * @since 12/2/17
  */
-public class LRUCache {
+
+
+/*
+I need to finish this task.
+ */
+public class LFUCache {
+
 
     public static void main(String[] args) {
-        LRUCache cache = new LRUCache(0);
+        LFUCache cache = new LFUCache(2);
 
-        cache.put(0, 0);
+        cache.put(2,2);
+        cache.put(1,1);
+        System.out.println(cache.get(2));
+        System.out.println(cache.get(1));
+        System.out.println(cache.get(2));
+        cache.put(3,3);
+        cache.put(4,4);
+        System.out.println(cache.get(3));
+        System.out.println(cache.get(2));
+        System.out.println(cache.get(1));
+        System.out.println(cache.get(4));
 
-        System.out.println(cache.get(0));
+
+        //[[3],[2,2],[1,1],[2],[1],[2],[3,3],[4,4],[3],[2],[1],[4]]
 
     }
 
-    Map<Integer, Node> nodeCache;
+    java.util.Map<Integer, Node> nodeCache;
     private Node head;
     private Node last;
     private int size;
     private int capacity;
 
-    public LRUCache(int capacity) {
-        nodeCache = new HashMap<>(capacity);
+    public LFUCache(int capacity) {
+        nodeCache = new java.util.HashMap<>(capacity);
         this.capacity = capacity;
     }
 
@@ -77,12 +88,15 @@ public class LRUCache {
             Node newNode = new Node();
             newNode.key = key;
             newNode.value = value;
-            newNode.next = head;
-            if (head != null) {
-                head.prev = newNode;
+
+            if (last!=null){
+                last.next=newNode;
+                newNode.prev=last;
+                last=newNode;
+            } else {
+                last=newNode;
             }
-            newNode.prev = null;
-            head = newNode;
+
             nodeCache.put(key, newNode);
 
             if (size == 0) {
@@ -118,7 +132,7 @@ public class LRUCache {
         public String toString() {
             StringBuilder st = new StringBuilder();
 
-            Node cur = this;
+            LFUCache.Node cur = this;
             while (cur != null) {
                 st.append(cur.value + ":");
                 cur = cur.next;

@@ -1,10 +1,6 @@
 package codewar.hackerrank;
 
-import sun.security.util.Resources_it;
-
-import java.math.BigInteger;
 import java.util.Scanner;
-import java.util.zip.CheckedInputStream;
 
 /**
  * @author Dauren Mussa

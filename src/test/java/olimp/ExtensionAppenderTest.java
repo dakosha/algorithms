@@ -1,9 +1,5 @@
 package olimp;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
-
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -12,7 +8,6 @@ import java.util.TreeSet;
  * @since 6/9/17
  */
 
-@RunWith(JUnit4.class)
 public class ExtensionAppenderTest {
 
     private static Set<String> extensions = new TreeSet<>();
@@ -53,7 +48,6 @@ public class ExtensionAppenderTest {
 
     private ExtensionAppender appender = new ExtensionAppender(extensions);
 
-    @Test
     public void testShouldExtensionBeAppended() {
         assert appender.appendExtension(withExtension, "txt").equals(withExtensionCheck);
         assert appender.appendExtension(withoutExtension, "txt").equals(withoutExtensionCheck);
@@ -67,7 +61,6 @@ public class ExtensionAppenderTest {
 
     }
 
-    @Test
     public void testShouldExtensionBeRemoved() {
         assert appender.removeExtension(withExtensionCheck).equals(withExtension);
         assert appender.removeExtension(withoutExtensionCheck).equals(withoutExtension);
