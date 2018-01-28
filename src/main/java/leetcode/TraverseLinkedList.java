@@ -1,7 +1,5 @@
 package leetcode;
 
-import sun.util.resources.cldr.ebu.CurrencyNames_ebu;
-
 /**
  * @author Dauren Mussa
  * @since 11/14/17
