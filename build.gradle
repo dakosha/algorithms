@@ -1,7 +1,7 @@
 buildscript {
     ext {
         versions = [
-                kotlin: "1.1.60",
+                kotlin: "1.2.21",
                 scala: "2.12",
                 scalaImplVersion: "2.12.4",
                 groovy: "2.4.12",
@@ -32,7 +32,6 @@ apply plugin: "gradle-clojure.clojure"
 
 apply plugin: 'application'
 apply plugin: 'idea'
-
 
 mainClassName = 'kz.algorithms.Main'
 

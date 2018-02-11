@@ -13,9 +13,12 @@ public abstract class Digest {
         byte[] result = cache.get(input);
         if (result == null) {
             synchronized (input.crcCode) {
-                result = doDigest(input.data);
-                cache.put(input, result);
+                if (result == null) {
+                    result = doDigest(input.data);
+                    cache.put(input, result);
+                }
             }
+
         }
         return result;
     }

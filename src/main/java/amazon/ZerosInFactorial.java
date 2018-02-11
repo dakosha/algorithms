@@ -8,10 +8,30 @@ import java.math.BigInteger;
  */
 public class ZerosInFactorial {
 
+    static int countFactZeros(int num) {
+        long time1 = System.nanoTime();
+
+        int count = 0;
+        if (num < 0) {
+            return -1;
+        }
+
+        for (int i = 5; num / i > 0; i *= 5) {
+            count += num / i;
+        }
+
+        System.out.println(System.nanoTime() - time1);
+        return count;
+    }
+
     public static void main(String[] args) {
-        int n = 99999999;
+        int n = 1000;
+
+        zeros(n);
+
         countZeros(n);
-        System.out.println();
+
+        System.out.println(countFactZeros(n));
         //zeros(n);
 
     }
