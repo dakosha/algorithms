@@ -1,0 +1,19 @@
+{
+  "new_attr_1": "move(/attribute_1)",
+  "new_attr_2": "move(/attribute_2)",
+  "new_object_attr": {
+    "new_inner_attr_1": "move(/object_attribute/inner_attr_1)",
+    "new_inner_attr_2": "move(/object_attribute/inner_attr_2)",
+    "extra_new_inner_attr_3": "move(/attribute_2)"
+  },
+  "new_array_attr_1":[
+    "move(/array_attribute_1)"
+  ],
+  "new_array_attr_2":[
+    {
+      "arr_attr_1": "move(/array_attribute_2,arr_attr_1)",
+      "arr_attr_2": "move(/array_attribute_2,arr_attr_1)",
+      "extended_arr_attr_3":"move(/attribute_1)"
+    }
+  ]
+}

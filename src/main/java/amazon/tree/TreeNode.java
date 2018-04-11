@@ -6,8 +6,11 @@ package amazon.tree;
  */
 public class TreeNode {
 
-    public TreeNode left, right;
+    public TreeNode left, right, parent;
     public int value;
+
+    //false - red, true - black
+    public boolean color = false;
 
     public TreeNode(int value) {
         this.value = value;
@@ -20,4 +23,5 @@ public class TreeNode {
         sb.append('}');
         return sb.toString();
     }
+
 }

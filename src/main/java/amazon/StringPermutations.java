@@ -7,7 +7,7 @@ package amazon;
 public class StringPermutations {
 
     public static void main(String[] args) {
-        String a = "abc";
+        String a = "abcde";
         permutate(a, "");
     }
 

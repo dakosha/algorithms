@@ -1,0 +1,19 @@
+{
+  "attribute_1": "attr_1_value",
+  "attribute_2": "attr_2_value",
+  "object_attribute": {
+    "inner_attr_1": "inner_value_1",
+    "inner_attr_2": "inner_value_2"
+  },
+  "array_attribute_1": [
+    "value1",
+    "value2",
+    "value3"
+  ],
+  "array_attribute_2": [
+    {
+      "arr_attr_1": "arr_attr_value_1",
+      "arr_attr_2": "arr_attr_value_2"
+    }
+  ]
+}

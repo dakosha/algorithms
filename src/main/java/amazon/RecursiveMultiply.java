@@ -32,7 +32,7 @@ public class RecursiveMultiply {
         powRes /= 2;
 
         b = b - powRes;
-        for (int i=0; i<b; i++) {
+        for (int i = 0; i < b; i++) {
             result3 += a;
         }
 

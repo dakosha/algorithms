@@ -20,10 +20,10 @@ public class CountOf2s {
                 r = r / 10;
             }
             total += subTotal;
-            System.out.println("for number: " + i + " - " + subTotal + " 2s, total = " + total);
+            //System.out.println("for number: " + i + " - " + subTotal + " 2s, total = " + total);
         }
 
-        System.out.println(total);
+        //System.out.println(total);
 
         System.out.println(count2s(n, 2));
 

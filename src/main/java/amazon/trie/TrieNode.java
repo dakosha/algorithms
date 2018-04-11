@@ -82,6 +82,11 @@ public class TrieNode {
         }
     }
 
+    public TrieNode findPrefix(String prefix) {
+        TrieNode node = this.findWord(prefix, false);
+        return node;
+    }
+
     public List<String> findWordsWithPrefix(String prefix) {
         TrieNode node = this.findWord(prefix, false);
 
