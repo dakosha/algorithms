@@ -22,6 +22,7 @@ public class AbstractTest {
 
     static abstract class Base extends AbstractTest {
         abstract int getNumber();
+        int a = 0b11111;
     }
 
     static class One extends Base {
