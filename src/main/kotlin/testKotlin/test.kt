@@ -1,13 +1,9 @@
-/**
- * This is an example of a Type-Safe Groovy-style Builder
- *
- * Builders are good for declaratively describing data in your code.
- * In this example we show how to describe an HTML page in Kotlin.
- *
- * See this page for details:
- * http://kotlinlang.org/docs/reference/type-safe-builders.html
- */
 package html
+
+/**
+ * @author Dauren Mussa
+ * @since 6/9/18
+ */
 
 fun main(args: Array<String>) {
     val result =
@@ -129,7 +125,7 @@ class P() : BodyTag("p")
 class H1() : BodyTag("h1")
 
 class A() : BodyTag("a") {
-    public var href: String
+    var href: String
         get() = attributes["href"]!!
         set(value) {
             attributes["href"] = value
